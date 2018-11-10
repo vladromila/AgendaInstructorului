@@ -12,7 +12,7 @@ const { UIManager } = NativeModules
 UIManager.setLayoutAnimationEnabledExperimental
     && UIManager.setLayoutAnimationEnabledExperimental(true)
 
-class StudentsHome extends React.Component {
+class StudentsSorted extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,11 +25,19 @@ class StudentsHome extends React.Component {
     }
     static navigationOptions = ({ navigation }) => {
         return {
-            header: null
+            title: "Elevi dupa serie",
+            headerStyle: {
+                backgroundColor: '#1E6EC7'
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+                color: 'white',
+                fontWeight: 'bold',
+            }
         }
     }
-    componentWillReceiveProps(nextProps) {
-        this.setState({ data: nextProps.students });
+    componentWillMount(){
+        this.setState({ data: this.props.students });
     }
     searchFilterFunction = (text) => {
         let search = text.toLowerCase()
@@ -45,17 +53,6 @@ class StudentsHome extends React.Component {
             backgroundColor:'white'
         }}
         >
-            <Header
-                backgroundColor={'#1E6EC7'}
-                placement="left"
-                leftComponent={<Icon1 name='sort-numeric-asc' color='white' size={30} onPress={() => {
-                    this.props.navigation.navigate('StudentSorted')
-                }} />}
-                centerComponent={{ text: 'Lista Elevilor', style: { color: '#fff', fontWeight: 'bold', fontSize: 22 } }}
-                rightComponent={<Icon1 name='plus' color='white' size={30} onPress={() => {
-                    this.props.navigation.navigate('AddStudent', this.props.students)
-                }} />}
-            />
             <List>
                 <FlatList
                     ListHeaderComponent={<SearchBar containerStyle={{ backgroundColor: "white", borderTopColor: 'transparent' }}
@@ -203,9 +200,9 @@ const styles = {
 }
 mapStateToProps = (state) => {
     function compare(a, b) {
-        if (a.nume < b.nume)
+        if (a.serie < b.serie)
             return -1;
-        if (a.nume > b.nume)
+        if (a.serie > b.serie)
             return 1;
         return 0;
     }
@@ -217,4 +214,4 @@ mapStateToProps = (state) => {
     const { isModalVisible1, deleteLoading, isSetToInactiveModalVisible, setToInactiveLoading } = state.students;
     return { students, isModalVisible1, deleteLoading, isSetToInactiveModalVisible, setToInactiveLoading };
 }
-export default connect(mapStateToProps, { fetchStudents, studentDelete, studentDeleteModalShowUp1, closeModal, studentToInactiveModalShow, setToInactive })(StudentsHome);
+export default connect(mapStateToProps, { fetchStudents, studentDelete, studentDeleteModalShowUp1, closeModal, studentToInactiveModalShow, setToInactive })(StudentsSorted);

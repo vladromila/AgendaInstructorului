@@ -13,6 +13,7 @@ import DoneClasses from './StudentsTab/DoneClasses'
 import CanceledClasses from './StudentsTab/CanceledClasses'
 
 import { Icon } from 'native-base'
+import StudentSerieSorted from "./StudentsTab/StudentSerieSorted";
 
 
 class LikesTab extends Component {
@@ -36,6 +37,9 @@ class LikesTab extends Component {
 const StudentsTab = createStackNavigator({
     StudentsHome: {
         screen: StudentsHome
+    },
+    StudentSorted:{
+        screen:StudentSerieSorted
     },
     AddStudent: {
         screen: AddStudent
