@@ -77,6 +77,7 @@ class ExamList extends React.Component {
 
                         return <View>
                             <ListItem
+                            containerStyle={{backgroundColor:'white'}}
                                 leftIcon={
                                     <Icon1 name="edit" size={23} style={{ paddingRight: 10, }} onPress={() => {
                                         item.showThird = true;

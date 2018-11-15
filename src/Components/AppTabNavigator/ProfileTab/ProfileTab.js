@@ -59,9 +59,9 @@ class Profile extends Component {
     render() {
         return (
             <ScrollView
-            style={{
-                backgroundColor:'white'
-            }}
+                style={{
+                    backgroundColor: 'white'
+                }}
             >
                 <View>
                     <Header
@@ -78,6 +78,7 @@ class Profile extends Component {
                     /></View>
                 <Text style={{ alignSelf: 'center', fontSize: 24 }}>{firebase.auth().currentUser.email}</Text>
                 <ListItem
+                    containerStyle={{ backgroundColor: 'white' }}
                     underlayColor={'rgba(0,0,0,0)'}
                     title={'Lista elevilor admisi'}
                     onPress={() => {
@@ -85,6 +86,7 @@ class Profile extends Component {
                     }}
                 />
                 <ListItem
+                    containerStyle={{ backgroundColor: 'white' }}
                     underlayColor={'rgba(0,0,0,0)'}
                     title={'Lista elevilor respinsi'}
                     onPress={() => {
@@ -96,6 +98,7 @@ class Profile extends Component {
 
                     <View>
                         <ListItem
+                            containerStyle={{ backgroundColor: 'white' }}
                             underlayColor={'rgba(0,0,0,0)'}
                             onPress={() => {
                                 this.setState({ isFirstTryListVisible: !this.state.isFirstTryListVisible })
@@ -119,7 +122,7 @@ class Profile extends Component {
                                                 else
                                                     this.setState({ selectedFTitem: item.uid })
                                             }}
-                                            containerStyle={{ borderLeftWidth: 1 }}
+                                            containerStyle={{ borderLeftWidth: 1, backgroundColor: 'white' }}
                                             title={item.nume}
                                         />
                                             {this.state.selectedFTitem === item.uid ? <View>
@@ -141,6 +144,7 @@ class Profile extends Component {
                 {this.state.allAcount !== null ?
                     <View>
                         <ListItem
+                            containerStyle={{ backgroundColor: 'white' }}
                             underlayColor={'rgba(0,0,0,0)'}
                             onPress={() => {
                                 this.setState({ isAllAlistVisible: !this.state.isAllAlistVisible })
@@ -149,41 +153,41 @@ class Profile extends Component {
                             rightIcon={this.state.isAllAlistVisible === true ? <Icon name="md-arrow-dropdown" /> : <Icon name="md-arrow-dropright" />}
                         />
                         {this.state.isAllAlistVisible === true ?
-                         <List
+                            <List
                                 containerStyle={{ paddingLeft: 20, marginTop: 0, backgroundColor: 'rgba(0,0,0,0)' }}>
-                            <FlatList
-                                extraData={this.state}
-                                data={this.state.allAlist}
-                                renderItem={({ item }) => {
-                                    return <View><ListItem
-                                        underlayColor={'rgba(0,0,0,0)'}
-                                        onPress={() => {
-                                            LayoutAnimation.spring();
-                                            if (this.state.selectedATitem === item.uid)
-                                                this.setState({ selectedATitem: null })
-                                            else
-                                                this.setState({ selectedATitem: item.uid })
-                                        }}
-                                        containerStyle={{ borderLeftWidth: 1 }}
-                                        title={item.nume}
-                                    />{this.state.selectedATitem === item.uid ?
-                                        <View>
-                                            <CardSection style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
-                                                <Text>Data: <Text style={{ fontWeight: 'bold' }}>{item.day} {this.state.months[item.month]} {item.year}</Text></Text>
-                                            </CardSection>
-                                            <CardSection style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
-                                                <Text>Numar de incercari: <Text style={{ fontWeight: 'bold' }}>{item.incercare}</Text></Text>
-                                            </CardSection>
-                                            <CardSection style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
-                                                <Text>Nume Politist: <Text style={{ fontWeight: 'bold' }}>{item.numePolitist}</Text></Text>
-                                            </CardSection>
+                                <FlatList
+                                    extraData={this.state}
+                                    data={this.state.allAlist}
+                                    renderItem={({ item }) => {
+                                        return <View><ListItem
+                                            underlayColor={'rgba(0,0,0,0)'}
+                                            onPress={() => {
+                                                LayoutAnimation.spring();
+                                                if (this.state.selectedATitem === item.uid)
+                                                    this.setState({ selectedATitem: null })
+                                                else
+                                                    this.setState({ selectedATitem: item.uid })
+                                            }}
+                                            containerStyle={{ borderLeftWidth: 1, backgroundColor: 'white' }}
+                                            title={item.nume}
+                                        />{this.state.selectedATitem === item.uid ?
+                                            <View>
+                                                <CardSection style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
+                                                    <Text>Data: <Text style={{ fontWeight: 'bold' }}>{item.day} {this.state.months[item.month]} {item.year}</Text></Text>
+                                                </CardSection>
+                                                <CardSection style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
+                                                    <Text>Numar de incercari: <Text style={{ fontWeight: 'bold' }}>{item.incercare}</Text></Text>
+                                                </CardSection>
+                                                <CardSection style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
+                                                    <Text>Nume Politist: <Text style={{ fontWeight: 'bold' }}>{item.numePolitist}</Text></Text>
+                                                </CardSection>
 
+                                            </View>
+                                            : null}
                                         </View>
-                                        : null}
-                                    </View>
 
-                                }}
-                            /></List> : null}
+                                    }}
+                                /></List> : null}
                     </View> : null}
                 <Button
                     title="Log Out"
