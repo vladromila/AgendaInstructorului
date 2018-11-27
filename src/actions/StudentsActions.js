@@ -134,7 +134,7 @@ export const setToActive = (student) => {
         delete student.nrn;
         delete student.nrs;
         firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/students/${student.uid}`)
-            .set({...student,nrn:0,nrs:0})
+            .set({...student,nrn:15,nrs:0})
             .then(() => {
                 firebase.database().ref(`/users/${firebase.auth().currentUser.uid}/instudents/${student.uid}`)
                     .remove()

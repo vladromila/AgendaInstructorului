@@ -183,6 +183,8 @@ class AddClass extends React.Component {
                                                         if (item.nrn === 15 && this.state.tip !== 'examen') {
                                                             this.setState({ nat: true, tip: 'suplimentara' })
                                                         }
+                                                        else
+                                                        this.setState({nat:false,tip:'normala'})
                                                     }
                                                     else {
                                                         this.setState({
