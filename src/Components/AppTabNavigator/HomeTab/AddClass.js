@@ -39,6 +39,7 @@ class AddClass extends React.Component {
             isModalVisible: true,
             isDateTimePickerVisible1: false,
             isDateTimePickerVisible2: false,
+            nat: false,
             examedStudents: [],
             months: ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie']
         }
@@ -120,7 +121,7 @@ class AddClass extends React.Component {
                             label='Locatie'
                         />
                     </CardSection> : null}
-                    {this.props.navigation.state.params.selectType === 'examOnly' ? null :
+                    {this.props.navigation.state.params.selectType === 'examOnly' || this.state.nat === true ? null :
                         <View>
                             <CardSection style={{ borderBottomWidth: 0, justifyContent: 'center' }}>
                                 <Text style={{ fontSize: 21, fontWeight: 'bold' }}>Tip</Text>
@@ -177,13 +178,22 @@ class AddClass extends React.Component {
                                                         this.setState({ examedStudents: examedStudents })
                                                     }
 
-                                                    if (this.state.studentUid !== item.uid)
+                                                    if (this.state.studentUid !== item.uid) {
                                                         this.setState({ studentUid: item.uid, selectedName: item.nume })
-                                                    else
+                                                        if (item.nrn === 15 && this.state.tip !== 'examen') {
+                                                            this.setState({ nat: true, tip: 'suplimentara' })
+                                                        }
+                                                    }
+                                                    else {
                                                         this.setState({
                                                             studentUid: null,
-                                                            selectedName: ''
-                                                        })
+                                                            selectedName: '',
+                                                            nat: false,
+                                                            tip:'normala'
+                                                        }) 
+                                                    
+                                                    }
+                                                   
                                                 }}
                                             />
                                         </View>
