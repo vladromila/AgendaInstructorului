@@ -177,25 +177,25 @@ class AddClass extends React.Component {
                                                         _.pullAt(examedStudents, id)
                                                         this.setState({ examedStudents: examedStudents })
                                                     }
-
-                                                    if (this.state.studentUid !== item.uid) {
-                                                        this.setState({ studentUid: item.uid, selectedName: item.nume })
-                                                        if (item.nrn === 15 && this.state.tip !== 'examen') {
-                                                            this.setState({ nat: true, tip: 'suplimentara' })
+                                                    if (this.state.tip !== 'examen')
+                                                        if (this.state.studentUid !== item.uid) {
+                                                            this.setState({ studentUid: item.uid, selectedName: item.nume })
+                                                            if (item.nrn === 15 && this.state.tip !== 'examen') {
+                                                                this.setState({ nat: true, tip: 'suplimentara' })
+                                                            }
+                                                            else
+                                                                this.setState({ nat: false, tip: 'normala' })
                                                         }
-                                                        else
-                                                        this.setState({nat:false,tip:'normala'})
-                                                    }
-                                                    else {
-                                                        this.setState({
-                                                            studentUid: null,
-                                                            selectedName: '',
-                                                            nat: false,
-                                                            tip:'normala'
-                                                        }) 
-                                                    
-                                                    }
-                                                   
+                                                        else {
+                                                            this.setState({
+                                                                studentUid: null,
+                                                                selectedName: '',
+                                                                nat: false,
+                                                                tip: 'normala'
+                                                            })
+
+                                                        }
+
                                                 }}
                                             />
                                         </View>
